@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'boilerplate_django_mongodb_swagger',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -76,10 +77,14 @@ WSGI_APPLICATION = 'boilerplate_django_mongodb_swagger.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+'default': {
+            'ENGINE': 'djongo',
+            'NAME': 'mongodb',
+            'ENFORCE_SCHEMA': False,
+            'CLIENT': {
+                'host': 'mongodb://root:secret@localhost:27017/mongodb?authSource=admin&retryWrites=true&w=majority'
+            }  
+        }
 }
 
 
